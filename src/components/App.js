@@ -11,6 +11,7 @@ import CustomSoftware from './screens/CustomSoftware'
 import MobileApps from './screens/MobileApps'
 import Websites from './screens/Websites'
 import Estimate from './screens/Estimate'
+import Footer from './ui/Footer'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/estimate' element={<Estimate />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </ThemeProvider>
   )
 }
