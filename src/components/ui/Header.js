@@ -134,13 +134,12 @@ export default function Header(props) {
     /iPad|iPhone|iPod/.test(navigator.userAgent)
 
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [newValue, setNewValue] = useState(0)
+
   const [anchorEl, setAnchorEl] = useState(null)
   const [openMenu, setOpenMenu] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const handlChange = (e, newValue) => {
-    setNewValue(newValue)
+    props.setNewValue(newValue)
   }
 
   const handleClick = (e) => {
@@ -150,7 +149,7 @@ export default function Header(props) {
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null)
     setOpenMenu(false)
-    setSelectedIndex(i)
+    props.setSelectedIndex(i)
   }
   const handleClose = (e) => {
     setAnchorEl(null)
@@ -158,14 +157,20 @@ export default function Header(props) {
   }
 
   const menuOptions = [
-    { name: 'Services', link: '/services', activeIndex: 0 },
+    { name: 'Services', link: '/services', activeIndex: 1, selectedIndex: 0 },
     {
       name: 'Custom Software Development',
       link: '/customsoftware',
       activeIndex: 1,
+      selectedIndex: 1,
     },
-    { name: 'Mobile Applications', link: '/mobileapps', activeIndex: 2 },
-    { name: 'Websites ', link: '/websites', activeIndex: 3 },
+    {
+      name: 'Mobile Applications',
+      link: '/mobileapps',
+      activeIndex: 1,
+      selectedIndex: 2,
+    },
+    { name: 'Websites ', link: '/websites', activeIndex: 1, selectedIndex: 3 },
   ]
 
   const routes = [
@@ -174,7 +179,6 @@ export default function Header(props) {
       name: 'Services',
       link: '/services',
       activeIndex: 1,
-      selectedIndex: 1,
       ariaOwns: anchorEl ? 'simple-menu' : undefined,
       ariaPopup: anchorEl ? true : undefined,
       mouseOver: (event) => handleClick(event),
@@ -183,20 +187,22 @@ export default function Header(props) {
       name: 'The Revolution',
       link: '/revolution',
       activeIndex: 2,
-      selectedIndex: 2,
     },
-    { name: 'About Us', link: '/about', activeIndex: 3, selectedIndex: 3 },
-    { name: 'Contact Us', link: '/contact', activeIndex: 4, selectedIndex: 4 },
+    { name: 'About Us', link: '/about', activeIndex: 3 },
+    { name: 'Contact Us', link: '/contact', activeIndex: 4 },
   ]
 
   useEffect(() => {
     ;[...menuOptions, ...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (newValue !== route.activeIndex) {
-            setNewValue(route.activeIndex)
-            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex)
+          if (props.newValue !== route.activeIndex) {
+            props.setNewValue(route.activeIndex)
+            if (
+              route.selectedIndex &&
+              route.selectedIndex !== props.selectedIndex
+            ) {
+              props.setSelectedIndex(route.selectedIndex)
             }
           }
           break
@@ -263,12 +269,12 @@ export default function Header(props) {
     //   default:
     //   // code block
     // }
-  }, [newValue, menuOptions, selectedIndex, routes])
+  }, [props.newValue, menuOptions, props.selectedIndex, routes, props])
 
   const tabs = (
     <React.Fragment>
       <Tabs
-        value={newValue}
+        value={props.newValue}
         className={classes.tabContainer}
         onChange={handlChange}
         indicatorColor='primary'
@@ -308,10 +314,10 @@ export default function Header(props) {
             classes={{ root: classes.menuItem }}
             onClick={(event) => {
               handleMenuItemClick(event, i)
-              setNewValue(1)
+              props.setNewValue(1)
               handleClose()
             }}
-            selected={i === selectedIndex && newValue === 1}
+            selected={i === props.selectedIndex && props.newValue === 1}
           >
             {option.name}
           </MenuItem>
@@ -339,11 +345,11 @@ export default function Header(props) {
               button
               component={Link}
               to={route.link}
-              selected={newValue === route.activeIndex}
+              selected={props.newValue === route.activeIndex}
               classes={{ selected: classes.drawerItemSelected }}
               onClick={() => {
                 setOpenDrawer(false)
-                setNewValue(route.activeIndex)
+                props.setNewValue(route.activeIndex)
               }}
             >
               <ListItemText className={classes.drawerItem} disableTypography>
@@ -356,7 +362,7 @@ export default function Header(props) {
             className={classes.drawerItemEstimate}
             onClick={() => {
               setOpenDrawer(false)
-              setNewValue(5)
+              props.setNewValue(5)
             }}
             divider
             button
@@ -366,7 +372,7 @@ export default function Header(props) {
               selected: classes.drawerItemSelected,
             }}
             to='/estimate'
-            selected={newValue === 5}
+            selected={props.newValue === 5}
           >
             <ListItemText className={classes.drawerItem} disableTypography>
               Free Estimate
@@ -395,7 +401,7 @@ export default function Header(props) {
               component={Link}
               to='/'
               disableRipple
-              onClick={() => setNewValue(0)}
+              onClick={() => props.setNewValue(0)}
             >
               <img className={classes.logo} alt='Company logo' src={logo} />
             </Button>
