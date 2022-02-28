@@ -17,6 +17,9 @@ import customoftwareIcon from '../../assets/Custom Software Icon.svg'
 import mobileAppsIcon from '../../assets/mobileIcon.svg'
 import websitesIcon from '../../assets/websiteIcon.svg'
 import revolutionBackground from '../../assets/repeatingBackground.svg'
+
+import infoBackground from '../../assets/infoBackground.svg'
+
 const useStyles = makeStyles((theme) => ({
   animation: {
     maxWidth: '50em',
@@ -115,12 +118,23 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
+
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%',
+  },
 }))
 
 export default function Home() {
   const classes = useStyles()
   const theme = useTheme()
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))
+
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'))
 
   const defaultOptions = {
     loop: true,
@@ -142,6 +156,7 @@ export default function Home() {
             </Typography>
             <Grid
               container
+              j
               justify='center'
               className={classes.buttonContainer}
             >
@@ -300,6 +315,8 @@ export default function Home() {
       </Grid>
 
       <Grid item>
+        {' '}
+        {/*-----The Revolution  Block......*/}
         <Grid
           container
           alignItems='center'
@@ -338,6 +355,91 @@ export default function Home() {
             </CardContent>
           </Card>
           <div className={classes.revolutionBackground} />
+        </Grid>
+      </Grid>
+
+      <Grid item>
+        {/*-----Information Block......*/}
+
+        <Grid
+          container
+          direction='row'
+          style={{ height: '80em' }}
+          alignItems='center'
+        >
+          <Grid
+            item
+            container
+            style={{
+              position: 'absolute',
+              textAlign: matchesXS ? 'center' : 'inherit',
+            }}
+            direction={matchesXS ? 'column' : 'row'}
+            spacing={matchesXS && 10}
+          >
+            <Grid
+              item
+              style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}
+              sm
+            >
+              <Grid container direction='column'>
+                <Typography variant='h2' style={{ color: 'white' }}>
+                  About Us
+                </Typography>
+                <Typography variant='subtitle2'>
+                  {' '}
+                  Let's get personal.
+                </Typography>
+                <Grid item>
+                  <Button
+                    variant='outlined'
+                    className={classes.learnButton}
+                    style={{ color: 'white', borderColor: 'white' }}
+                  >
+                    <span style={{ marginRight: 10 }}>Learn More </span>
+                    <ButtonArrow
+                      width={10}
+                      height={10}
+                      fill='white'
+                    ></ButtonArrow>
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+            {/** right text  */}
+
+            <Grid
+              item
+              style={{
+                marginRight: matchesXS ? 0 : matchesSM ? '2em' : '5em',
+                textAlign: matchesXS ? 'center' : 'right',
+              }}
+              sm
+            >
+              <Grid container direction='column'>
+                <Typography variant='h2' style={{ color: 'white' }}>
+                  Contact Us
+                </Typography>
+                <Typography variant='subtitle2'> Say hello! .</Typography>
+                <Grid item>
+                  <Button
+                    variant='outlined'
+                    className={classes.learnButton}
+                    style={{ color: 'white', borderColor: 'white' }}
+                  >
+                    <span style={{ marginRight: 10 }}>Learn More </span>
+                    <ButtonArrow
+                      width={10}
+                      height={10}
+                      fill='white'
+                    ></ButtonArrow>
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <div className={classes.infoBackground}></div>
         </Grid>
       </Grid>
     </Grid>
