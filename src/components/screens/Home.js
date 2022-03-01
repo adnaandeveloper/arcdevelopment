@@ -19,6 +19,7 @@ import websitesIcon from '../../assets/websiteIcon.svg'
 import revolutionBackground from '../../assets/repeatingBackground.svg'
 
 import infoBackground from '../../assets/infoBackground.svg'
+import CallToAction from '../ui/CallToAction'
 
 const useStyles = makeStyles((theme) => ({
   animation: {
@@ -441,6 +442,12 @@ export default function Home() {
 
           <div className={classes.infoBackground}></div>
         </Grid>
+      </Grid>
+
+      <Grid item>
+        {/** Call to action block text  */}
+
+        <CallToAction />
       </Grid>
     </Grid>
   )
