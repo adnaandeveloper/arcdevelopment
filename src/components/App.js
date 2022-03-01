@@ -27,7 +27,10 @@ function App() {
           setSelectedIndex={setSelectedIndex}
         />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route
+            path='/'
+            element={<Home newValue={newValue} setNewValue={setNewValue} />}
+          />
           <Route path='/services' element={<Services />} />
           <Route path='/revolution' element={<Revolution />} />
           <Route path='/about' element={<AboutUs />} />

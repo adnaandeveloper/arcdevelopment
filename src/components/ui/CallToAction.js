@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   Typography,
   Grid,
@@ -79,7 +80,12 @@ export default function CallToAction() {
               Take atage of the 21st Century
             </Typography>
             <Grid container item justifyContent={matchesSM && 'center'}>
-              <Button variant='outlined' className={classes.learnButton}>
+              <Button
+                component={Link}
+                to='/revolution'
+                variant='outlined'
+                className={classes.learnButton}
+              >
                 <span style={{ marginRight: 5 }}>Learn More </span>
                 <ButtonArrow
                   width={10}
@@ -93,6 +99,8 @@ export default function CallToAction() {
       </Grid>
       <Grid item>
         <Button
+          component={Link}
+          to='/estimate'
           variant='contained'
           className={classes.estiamteButton}
           style={{ marginTop: matchesSM && '2rem' }}

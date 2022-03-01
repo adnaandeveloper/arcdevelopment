@@ -1,5 +1,6 @@
 import React from 'react'
 import Lottie from 'react-lottie-player'
+import { Link } from 'react-router-dom'
 import {
   makeStyles,
   useTheme,
@@ -130,7 +131,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Home() {
+export default function Home(props) {
+  console.log(props.newValue)
   const classes = useStyles()
   const theme = useTheme()
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))
@@ -162,13 +164,25 @@ export default function Home() {
               className={classes.buttonContainer}
             >
               <Grid item>
-                <Button className={classes.estimateButton} variant='contained'>
+                <Button
+                  component={Link}
+                  to='/estimate'
+                  className={classes.estimateButton}
+                  variant='contained'
+                  onClick={() => props.setNewValue(5)}
+                >
                   {' '}
                   Free Estimate
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant='outlined' className={classes.learnMoreButton}>
+                <Button
+                  component={Link}
+                  to='/revolution'
+                  variant='outlined'
+                  className={classes.learnMoreButton}
+                  onClick={() => props.setNewValue(2)}
+                >
                   <span style={{ marginRight: 10 }}>Learn More </span>
                   <ButtonArrow
                     width={15}
@@ -209,7 +223,16 @@ export default function Home() {
               Complete digital solutions, from investigation to{' '}
               <span className={classes.specialText}>celebration.</span>
             </Typography>
-            <Button variant='outlined' className={classes.learnButton}>
+            <Button
+              component={Link}
+              to='/customsoftware'
+              variant='outlined'
+              className={classes.learnButton}
+              onClick={() => {
+                props.setNewValue(1)
+                props.setSelected(1)
+              }}
+            >
               <span style={{ marginRight: 10 }}>Learn More </span>
               <ButtonArrow
                 width={10}
@@ -252,7 +275,16 @@ export default function Home() {
               Integrate your web experience or create a standalone app
               {matchesSM ? null : <br />} with either mobile platform.
             </Typography>
-            <Button variant='outlined' className={classes.learnButton}>
+            <Button
+              component={Link}
+              to='/mobileapps'
+              variant='outlined'
+              className={classes.learnButton}
+              onClick={() => {
+                props.setNewValue(1)
+                props.setSelected(2)
+              }}
+            >
               <span style={{ marginRight: 10 }}>Learn More </span>
               <ButtonArrow
                 width={10}
@@ -295,7 +327,16 @@ export default function Home() {
             <Typography variant='subtitle1' className={classes.subtitle}>
               Optimized for Search Engines, built for speed.
             </Typography>
-            <Button variant='outlined' className={classes.learnButton}>
+            <Button
+              component={Link}
+              to='/websites'
+              variant='outlined'
+              className={classes.learnButton}
+              onClick={() => {
+                props.setNewValue(1)
+                props.setSelected(3)
+              }}
+            >
               <span style={{ marginRight: 10 }}>Learn More </span>
               <ButtonArrow
                 width={10}
@@ -341,8 +382,11 @@ export default function Home() {
                     recipe for revolution.
                   </Typography>
                   <Button
+                    component={Link}
+                    to='/revolution'
                     variant='outlined'
                     className={classes.learnMoreButton}
+                    onClick={() => props.setNewValue(2)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More </span>
                     <ButtonArrow
@@ -367,23 +411,26 @@ export default function Home() {
           direction='row'
           style={{ height: '80em' }}
           alignItems='center'
+          className={classes.infoBackground}
         >
           <Grid
             item
             container
             style={{
-              position: 'absolute',
               textAlign: matchesXS ? 'center' : 'inherit',
             }}
             direction={matchesXS ? 'column' : 'row'}
-            spacing={matchesXS && 10}
           >
             <Grid
               item
               style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}
               sm
             >
-              <Grid container direction='column'>
+              <Grid
+                container
+                direction='column'
+                style={{ marginBottom: matchesXS && '10em' }}
+              >
                 <Typography variant='h2' style={{ color: 'white' }}>
                   About Us
                 </Typography>
@@ -393,9 +440,12 @@ export default function Home() {
                 </Typography>
                 <Grid item>
                   <Button
+                    component={Link}
+                    to='/about'
                     variant='outlined'
                     className={classes.learnButton}
                     style={{ color: 'white', borderColor: 'white' }}
+                    onClick={() => props.setNewValue(3)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More </span>
                     <ButtonArrow
@@ -424,9 +474,12 @@ export default function Home() {
                 <Typography variant='subtitle2'> Say hello! .</Typography>
                 <Grid item>
                   <Button
+                    component={Link}
+                    to='/contact'
                     variant='outlined'
                     className={classes.learnButton}
                     style={{ color: 'white', borderColor: 'white' }}
+                    onClick={() => props.setNewValue(4)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More </span>
                     <ButtonArrow
@@ -439,15 +492,13 @@ export default function Home() {
               </Grid>
             </Grid>
           </Grid>
-
-          <div className={classes.infoBackground}></div>
         </Grid>
       </Grid>
 
       <Grid item>
         {/** Call to action block text  */}
 
-        <CallToAction />
+        <CallToAction setNewValue={props.setNewValue} />
       </Grid>
     </Grid>
   )
