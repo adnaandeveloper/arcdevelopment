@@ -51,7 +51,7 @@ const useStales = makeStyles((theme) => ({
   },
 }))
 
-export default function CallToAction() {
+export default function CallToAction(props) {
   const classes = useStales()
   const theme = useTheme()
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))
@@ -85,6 +85,7 @@ export default function CallToAction() {
                 to='/revolution'
                 variant='outlined'
                 className={classes.learnButton}
+                onClick={() => props.setNewValue(2)}
               >
                 <span style={{ marginRight: 5 }}>Learn More </span>
                 <ButtonArrow
@@ -104,6 +105,7 @@ export default function CallToAction() {
           variant='contained'
           className={classes.estiamteButton}
           style={{ marginTop: matchesSM && '2rem' }}
+          onClick={() => props.setNewValue(5)}
         >
           Free Estimate
         </Button>

@@ -31,7 +31,10 @@ function App() {
             path='/'
             element={<Home newValue={newValue} setNewValue={setNewValue} />}
           />
-          <Route path='/services' element={<Services />} />
+          <Route
+            path='/services'
+            element={<Services newValue={newValue} setNewValue={setNewValue} />}
+          />
           <Route path='/revolution' element={<Revolution />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/contact' element={<ContactUs />} />
