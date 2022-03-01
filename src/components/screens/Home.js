@@ -152,7 +152,12 @@ export default function Home(props) {
     <Grid container direction='column' className={classes.mainContainer}>
       <Grid item>
         {/*------- Hero Block.......*/}
-        <Grid container justify='flex-end' alignItems='center' direction='row'>
+        <Grid
+          container
+          justifyContent='flex-end'
+          alignItems='center'
+          direction='row'
+        >
           <Grid sm item className={classes.heroTextContainer}>
             <Typography variant='h2' align='center'>
               Bringing west GOast tegnology <br /> to the midwest{' '}
@@ -160,7 +165,7 @@ export default function Home(props) {
             <Grid
               container
               j
-              justify='center'
+              justifyContent='center'
               className={classes.buttonContainer}
             >
               <Grid item>
@@ -206,7 +211,7 @@ export default function Home(props) {
           container
           direction='row'
           className={classes.serviceContainer}
-          justify={matchesSM ? 'center' : undefined}
+          justifyContent={matchesSM ? 'center' : ''}
         >
           <Grid
             item
@@ -258,7 +263,7 @@ export default function Home(props) {
         <Grid
           container
           direction='row'
-          justify={matchesSM ? 'center' : 'flex-end'}
+          justifyContent={matchesSM ? 'center' : 'flex-end'}
           className={classes.serviceContainer}
         >
           <Grid
@@ -311,7 +316,7 @@ export default function Home(props) {
           container
           direction='row'
           className={classes.serviceContainer}
-          justify={matchesSM ? 'center' : undefined}
+          justifyContent={matchesSM ? 'center' : ''}
         >
           <Grid
             item
@@ -362,7 +367,7 @@ export default function Home(props) {
         <Grid
           container
           alignItems='center'
-          justify='center'
+          justifyContent='center'
           style={{ height: '100em', marginTop: '12em' }}
         >
           <Card className={classes.revolutionCard}>

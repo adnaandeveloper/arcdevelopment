@@ -221,7 +221,7 @@ export default function Footer(props) {
 
       <Grid
         container
-        justify='flex-end'
+        justifyContent='flex-end'
         spacing={2}
         className={classes.socialContainer}
       >

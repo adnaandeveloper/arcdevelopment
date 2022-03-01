@@ -39,7 +39,12 @@ function App() {
           <Route path='/about' element={<AboutUs />} />
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/mobileapps' element={<MobileApps />} />
-          <Route path='/customsoftware' element={<CustomSoftware />} />
+          <Route
+            path='/customsoftware'
+            element={
+              <CustomSoftware newValue={newValue} setNewValue={setNewValue} />
+            }
+          />
           <Route path='/websites' element={<Websites />} />
           <Route path='/estimate' element={<Estimate />} />
         </Routes>
