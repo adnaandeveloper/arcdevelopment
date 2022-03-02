@@ -38,7 +38,12 @@ function App() {
           <Route path='/revolution' element={<Revolution />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/contact' element={<ContactUs />} />
-          <Route path='/mobileapps' element={<MobileApps />} />
+          <Route
+            path='/mobileapps'
+            element={
+              <MobileApps newValue={newValue} setNewValue={setNewValue} />
+            }
+          />
           <Route
             path='/customsoftware'
             element={
